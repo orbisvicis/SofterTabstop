@@ -1,0 +1,94 @@
+*SofterTabstop.txt*   Extend Vim's softtabstop behaviour
+
+License: GPLv2+
+Author:  Yclept Nemo <pscjtwjdjtAhnbjm/dpn>
+
+
+==============================================================================
+CONTENTS                                        *SofterTabstop-Contents*
+
+Introduction            |SofterTabstop|
+    Functions               |SofterTabstop-Functions|
+    Variables               |SofterTabstop-Variables|
+    Example Mappings        |SofterTabstop-Mappings|
+    FAQ                     |SofterTabstop-FAQ|
+
+
+==============================================================================
+INTRODUCTION                                    *SofterTabstop*
+
+This plugin extends Vim's softtabstop behaviour to align to surrounding
+identation levels as well as multiples of |'tabstop'|. Like the original
+behaviour, this plugin is fully controlled via the |'softtabstop'| option.
+
+
+==============================================================================
+FUNCTIONS                                       *SofterTabstop-Functions*
+
+:SofterTabstop#SoftBackspace [count] [count]
+
+    Delete towards the first indentation level less than the current level
+    within [count] lines up or down or to the nearest multiple of
+    |'softtabstop'|, whichever comes first.
+
+:SofterTabstop#SoftTab [limit_up] [limit_down]
+
+    Tab towards the nearest indentation level greater than the current level
+    within [count] lines up or down or to the nearest multiple of
+    |'softtabstop'|, whichever comes first.
+
+:SofterTabstop#SoftSpace
+
+    Disable soft tabbing when a space is inserted within the current
+    indentation level. The default of Vim is to disable soft tabbing whenever
+    a space is inserted anywhere.
+
+:SofterTabstop#SoftEnter
+
+    Re-enable soft tabbing on newlines.
+
+
+==============================================================================
+VARIABLES                                       *SofterTabstop-Variables*
+
+b:soft_mode_align=1
+
+    Tracks whether soft tabbing is currently enabled for the current buffer.
+
+
+==============================================================================
+EXAMPLE MAPPINGS                                *SofterTabstop-Mappings*
+
+autocmd Filetype               Haskell set softtabstop=4
+
+    A softtabstop of 0 reinstates Vim's default behaviour.
+
+autocmd Filetype,InsertEnter   Haskell let b:soft_mode_align=1
+
+    Without this setting, soft tabbing will be initially disabled when
+    entering insert mode.
+
+autocmd FileType Haskell inoremap <buffer> <silent> <expr> <BS> SoftBackspace()
+autocmd FileType Haskell inoremap <buffer> <silent> <expr> <Tab>    SoftTab()
+autocmd FileType Haskell inoremap <buffer> <silent> <expr> <Space>  SoftSpace()
+autocmd FileType Haskell inoremap <buffer> <silent> <expr> <CR>     SoftEnter()
+
+    See |SofterTabstop-Functions| for more detail. It is recommended that
+    these all be enabled.
+
+
+==============================================================================
+FAQ                                             *SofterTabstop-FAQ*
+
+Q: Speed:
+
+A: No noticeable or negligent performance drawbacks.
+
+Q. Limitations:
+
+A: Doesn't seem to work with concealed lines, not sure why.
+
+
+
+
+vim:tw=78:fo=tcq2:ft=help:norl:
