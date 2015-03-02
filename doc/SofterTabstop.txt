@@ -12,6 +12,7 @@ Introduction            |SofterTabstop|
     Variables               |SofterTabstop-Variables|
     Example Mappings        |SofterTabstop-Mappings|
     FAQ                     |SofterTabstop-FAQ|
+    Credit                  |SofterTabstop-Credit|
 
 
 ==============================================================================
@@ -68,13 +69,13 @@ autocmd Filetype,InsertEnter   Haskell let b:soft_mode_align=1
     Without this setting, soft tabbing will be initially disabled when
     entering insert mode.
 
-autocmd FileType Haskell inoremap <buffer> <silent> <expr> <BS> SoftBackspace()
-autocmd FileType Haskell inoremap <buffer> <silent> <expr> <Tab>    SoftTab()
-autocmd FileType Haskell inoremap <buffer> <silent> <expr> <Space>  SoftSpace()
-autocmd FileType Haskell inoremap <buffer> <silent> <expr> <CR>     SoftEnter()
+autocmd FileType haskell inoremap <buffer> <silent> <expr> <BS>     SofterTabstop#SoftBackspace()
+autocmd FileType haskell inoremap <buffer> <silent> <expr> <Tab>    SofterTabstop#SoftTab()
+autocmd FileType haskell inoremap <buffer> <silent> <expr> <Space>  SofterTabstop#SoftSpace()
+autocmd FileType haskell inoremap <buffer> <silent> <expr> <CR>     SofterTabstop#SoftEnter()
 
     See |SofterTabstop-Functions| for more detail. It is recommended that
-    these all be enabled.
+    these all be enabled. The argument <expr> is required.
 
 
 ==============================================================================
@@ -87,6 +88,13 @@ A: No noticeable or negligent performance drawbacks.
 Q. Limitations:
 
 A: Doesn't seem to work with concealed lines, not sure why.
+
+
+==============================================================================
+CREDIT                                          *SofterTabstop-Credit*
+
+Great thanks to #vim@irc.freenode.net, particularly 'sakkemo', without which
+it is unlikely this plugin would have been finished.
 
 
 
