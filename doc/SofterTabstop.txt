@@ -8,6 +8,7 @@ Author:  Yclept Nemo <pscjtwjdjtAhnbjm/dpn>
 CONTENTS                                        *SofterTabstop-Contents*
 
 Introduction            |SofterTabstop|
+    Requirements            |SofterTabstop-Requirements|
     Functions               |SofterTabstop-Functions|
     Variables               |SofterTabstop-Variables|
     Example Mappings        |SofterTabstop-Mappings|
@@ -24,6 +25,13 @@ behaviour, this plugin is fully controlled via the |'softtabstop'| option.
 
 
 ==============================================================================
+REQUIREMENTS                                    *SofterTabstop-Requirements*
+
+    1. Vim compiled with |+python| support. 
+    2. Python with the enum module.
+
+
+==============================================================================
 FUNCTIONS                                       *SofterTabstop-Functions*
 
 :SofterTabstop#SoftBackspace [count] [count]
@@ -32,7 +40,7 @@ FUNCTIONS                                       *SofterTabstop-Functions*
     within [count] lines up or down or to the nearest multiple of
     |'softtabstop'|, whichever comes first.
 
-:SofterTabstop#SoftTab [limit_up] [limit_down]
+:SofterTabstop#SoftTab [count] [count]
 
     Tab towards the nearest indentation level greater than the current level
     within [count] lines up or down or to the nearest multiple of
